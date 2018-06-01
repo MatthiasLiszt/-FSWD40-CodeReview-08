@@ -1,0 +1,91 @@
+[
+{
+  "name": "Jack",
+  "surname": "Daniels",
+  "age": 25,
+  "image": "../assets/boy1.jpg",
+  "likes": 0,
+  "inRelation": false,
+  "gender": "male"
+},
+{
+  "name": "Ann",
+  "surname": "Dough",
+  "age": 26,
+  "image": "../assets/girl1.jpg",
+  "likes": 4,
+  "inRelation": false,
+  "gender": "female"
+},
+{
+  "name": "Mary",
+  "surname": "Jane",
+  "age": 24,
+  "image": "../assets/girl2.jpg",
+  "inRelation": false,
+  "likes": 3,
+  "gender": "female"
+},
+{
+  "name": "Sam",
+  "surname": "May",
+  "age": 23,
+  "image": "../assets/boy2.jpg",
+  "inRelation": false,
+  "likes": 2,
+  "gender": "male"
+},
+{
+  "name": "Elena",
+  "surname": "May",
+  "age": 23,
+  "image": "../assets/girl3.jpg",
+  "inRelation": false,
+  "likes": 2,
+  "gender": "female"
+},
+{
+  "name": "Kate",
+  "surname": "Winslet",
+  "age": 25,
+  "image": "../assets/girl4.jpg",
+  "inRelation": false,
+  "likes": 4,
+  "gender": "female"
+},
+{
+  "name": "Emma",
+  "surname": "Winehouse",
+  "age": 24,
+  "image": "../assets/girl5.jpg",
+  "inRelation": false,
+  "likes": 2,
+  "gender": "female"
+},
+{
+  "name": "Sylvia",
+  "surname": "Cunnings",
+  "age": 21,
+  "image": "../assets/girl6.jpg",
+  "inRelation": false,
+  "likes": 2,
+  "gender": "female"
+},
+{
+  "name": "Brad",
+  "surname": "Oldon",
+  "age": 54,
+  "image": "../assets/oldm.jpg",
+  "inRelation": false,
+  "likes": 0,
+  "gender": "male"
+},
+{
+  "name": "Harry",
+  "surname": "Apeton",
+  "age": 46,
+  "image": "../assets/glassmale.jpg",
+  "inRelation": false,
+  "likes": 0,
+  "gender": "male"
+}]

@@ -1,0 +1,17 @@
+[{"name": 'Jack',
+   "surname": 'Daniels',
+   "age": 25,
+   "image": "../assets/boy1.jpg",  
+   "likes": 0,   
+   "inRelation": false,
+   "gender": 'male' 
+ },
+ {"name": 'Ann',
+  "surname": 'Dough',
+  "age": 26,
+  "image": "../assets/girl1.jpg",    
+  "likes": 4,   
+  "inRelation": false,
+  "gender": 'female'
+ }
+]
