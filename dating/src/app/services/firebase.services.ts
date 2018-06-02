@@ -16,6 +16,10 @@ export class FirebaseService{
 
   }
 
+  addProfile(newProfile) {
+      return this.profiles.push(newProfile);
+  }
+
 /*
   getFoodApps(category: string = null) {
       if (category != null) {
@@ -33,16 +37,8 @@ export class FirebaseService{
 */
 
 }
-/*export interface Foodapp {
-  $key?: string;
-  name: string; 
-  vitamin: string;
-  category: string;
-}
-export interface Category {
-  $key?: string;
-  category?: string;
-}*/
+
+
 
 export interface Profiles {
  $key?: string;
@@ -50,6 +46,7 @@ export interface Profiles {
  surname: string;
  age: number;
  gender: string;
+ image: string;
  inRelation: string;
  likes: number; 
 }

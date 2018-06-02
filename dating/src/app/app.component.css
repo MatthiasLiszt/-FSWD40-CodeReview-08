@@ -56,3 +56,11 @@ footer span{
  border-radius: 20%;
 }
 
+nav{
+ background-color: lightgreen;
+ font-size: 2em;
+ color: black;
+ padding-left: 1em;
+ padding-top:  0.5em;
+ padding-bottom: 0.5em;
+}

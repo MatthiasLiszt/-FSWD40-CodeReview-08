@@ -7,7 +7,10 @@ import { AngularFireAuth} from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 import { OnInit } from '@angular/core';
-//import {Persons} from './sample';
+
+import { MaleComponent } from './male/male.component';
+import { FemaleComponent } from './female/female.component';
+import { AllComponent } from './all/all.component';
 
 
 @Component({
@@ -21,22 +24,41 @@ export class AppComponent implements OnInit {
   //categories: Category[];
   profiles: Profiles[];
   appState: string;
-  loaded: boolean;
   activeKey: string;
   triggered: number;
   test: string;
+  loaded: boolean;
   Profile=[];
+  filteredby: string;
+  filtered: boolean;
+  Filtered=[];
+
 
   constructor(private _firebaseService: FirebaseService) {
    this.triggered=0;
 
    this.test=Persons[1].name;
    this.Profile=Persons;
-   this.loaded=false;
+   this.loaded=true;
+   this.filtered=false;
   }
 
   incrementLike(id){
    ++this.Profile[id].likes;
+   this.addProfile(this.Profile[id].name,this.Profile[id].surname,this.Profile[id].age,this.Profile[id].gender,this.Profile[id].image,this.Profile[id].inRelation,this.Profile[id].likes);   
+   this.deleteProfile(this.Profile[id].$key);
+  }
+
+  filterStatus(option){
+   this.filteredby=option;
+   //alert(option);
+   
+   
+   if(option == 'all')
+    {this.filtered=false;}
+   else 
+    {this.filtered=true;}  
+    
   }
 
   ngOnInit() {
@@ -45,16 +67,36 @@ export class AppComponent implements OnInit {
     
     this._firebaseService.getProfiles().subscribe(profiles => {
  
-      this.profiles = profiles;
+      //this.profiles = profiles;
       if(!((profiles === undefined)||(profiles===null)))
        {this.Profile = profiles;}
       
       this.loaded=true;
-        
+      //document.getElementById('transfer').textContent=JSON.stringify(this.Profile);
+      //alert(JSON.stringify(this.Profile[1]));
+      //alert(this.Profile[1].$key);
     });
 
     //let profileRendering=new singleProfile;
     //document.getElementById('droppings').innerHTML=profileRendering.render();
+  }
+
+  addProfile(name, surname, age, gender,image, inRelation, likes) {
+   let newProfile = {
+    name: name,
+    surname: surname,
+    age: age,
+    gender: gender,
+    image: image,
+    inRelation: inRelation,
+    likes: likes
+   };
+   this._firebaseService.addProfile(newProfile);
+   //this.changeState('default');
+  }
+
+  deleteProfile(itemKey){
+    this._firebaseService.getProfiles().remove(itemKey);
   }
 /*filterCategory(category) {
   this._firebaseService.getFoodApps(category).subscribe(foodapp=> {
@@ -71,22 +113,16 @@ export class AppComponent implements OnInit {
 }
   
 
-  /*addFood(name: string, category: string, vitamin: string) {
-   var newFood = {
-     name: name,
-     category: category,
-     vitamin: vitamin
-   }
-   this._firebaseService.addFood(newFood);
-   this.changeState('default');
-  }
-}*/
+  
+
+
 interface Profiles {
  $key?: string;
  name: string; 
  surname: string;
  age: number;
  gender: string;
+ image: string;
  inRelation: string;
  likes: number; 
 }
@@ -122,7 +158,7 @@ render(){//var Persons = require('./json/sample.json');
 
 }
 
- 
+
  
 var Persons= [
                        {
