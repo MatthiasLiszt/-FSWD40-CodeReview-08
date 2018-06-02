@@ -37,6 +37,8 @@ export class AppComponent implements OnInit {
 
   incrementLike(id){
    ++this.Profile[id].likes;
+   this.addProfile(this.Profile[id].name,this.Profile[id].surname,this.Profile[id].age,this.Profile[id].gender,this.Profile[id].image,this.Profile[id].inRelation,this.Profile[id].likes);   
+   this.deleteProfile(this.Profile[id].$key);
   }
 
   ngOnInit() {
@@ -45,16 +47,35 @@ export class AppComponent implements OnInit {
     
     this._firebaseService.getProfiles().subscribe(profiles => {
  
-      this.profiles = profiles;
+      //this.profiles = profiles;
       if(!((profiles === undefined)||(profiles===null)))
        {this.Profile = profiles;}
       
       this.loaded=true;
-        
+      //alert(JSON.stringify(this.Profile[1]));
+      //alert(this.Profile[1].$key);
     });
 
     //let profileRendering=new singleProfile;
     //document.getElementById('droppings').innerHTML=profileRendering.render();
+  }
+
+  addProfile(name, surname, age, gender,image, inRelation, likes) {
+   let newProfile = {
+    name: name,
+    surname: surname,
+    age: age,
+    gender: gender,
+    image: image,
+    inRelation: inRelation,
+    likes: likes
+   };
+   this._firebaseService.addProfile(newProfile);
+   //this.changeState('default');
+  }
+
+  deleteProfile(itemKey){
+    this._firebaseService.getProfiles().remove(itemKey);
   }
 /*filterCategory(category) {
   this._firebaseService.getFoodApps(category).subscribe(foodapp=> {
@@ -71,22 +92,16 @@ export class AppComponent implements OnInit {
 }
   
 
-  /*addFood(name: string, category: string, vitamin: string) {
-   var newFood = {
-     name: name,
-     category: category,
-     vitamin: vitamin
-   }
-   this._firebaseService.addFood(newFood);
-   this.changeState('default');
-  }
-}*/
+  
+
+
 interface Profiles {
  $key?: string;
  name: string; 
  surname: string;
  age: number;
  gender: string;
+ image: string;
  inRelation: string;
  likes: number; 
 }
