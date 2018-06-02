@@ -1,3 +1,8 @@
+<nav>
+  <span><a routerLink="/all" (click)="filterStatus('all')">all</a></span>&nbsp;
+  <span><a routerLink="/male" (click)="filterStatus('male')">male</a></span>&nbsp;
+  <span><a rounterLink="/female" (click)="filterStatus('female')">female</a></span>
+</nav>
 <header>
   coder's <span>&lt;<img src="../assets/like.png">&gt;</span>dating
 </header>
@@ -7,7 +12,9 @@
 <div class="container">
   <div class="row">
     <div id="droppings">
-      <div *ngIf = "loaded == true">     
+
+
+        <div *ngIf = "(loaded == true) && (filtered == false)">     
           <p>loading status of database : {{loaded}}</p>
           <div *ngFor="let x of Profile; let ii = index; " >
             <div class='col-lg-4 col-md-6 col-sm-12'>
@@ -26,13 +33,35 @@
               </div>
             </div>
           </div>
-        </div><!--ngIf-->  
+        </div><!--ngIf-->
+
+        <div *ngIf = "(loaded == true) && (filtered == true)">     
+          <p>loading status of database : {{loaded}}</p>
+          <div *ngFor="let x of Profile; let ii = index; " >
+            <div *ngIf="x.gender == filteredby ">
+            <div class='col-lg-4 col-md-6 col-sm-12'>
+              <div style="margin: 2%;padding: 3%;background-color:plum;border-radius:9%;display:flex;flex-direction:row;">
+                <img width="150" height="150" src="{{x.image}} " />
+                <div style="display: inline;margin: 0.3em;">
+                  <p>Name: <strong>{{x.name}}</strong>
+                    <p>Surame: <strong>{{x.surname}}</strong>
+                      <p> Age: <strong>{{x.age}}</strong></p>
+                      <p>gender: {{x.gender}}</p>
+                      <p>in relation: {{x.inRelation}}</p>
+                      <p>
+                        <button class="like" (click)="incrementLike([ii])">Like</button>&nbsp;{{Profile[ii].likes}}
+                        <span color="red"> &hearts;</span></p>
+                </div>
+              </div>
+            </div>
+          </div><!-- inner ngIf -->
+          </div>
+        </div><!--ngIf-->
+
     </div>
   </div>
 </div>
 <footer>
   <hr> coder's &lt;<span>&hearts;</span>&gt; dating
 </footer>
-<div id="sortIt"></div>
-<!--drop-data -->
-<!--/drop-data -->
+<router-outlet></router-outlet>

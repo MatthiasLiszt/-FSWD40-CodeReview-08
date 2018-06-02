@@ -6,6 +6,11 @@ import { AngularFireModule} from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
+import { RouterModule, Routes } from '@angular/router';
+import { MaleComponent } from './male/male.component';
+import { FemaleComponent } from './female/female.component';
+import { AllComponent } from './all/all.component';
+
 /*
 export const firebaseConfig ={
       apiKey: "AIzaSyDKC-hOHXaSVFUp3xXR0VVsbpnV9qqSwjs",
@@ -25,15 +30,30 @@ export const firebaseConfig ={
     messagingSenderId: "919037364812"
 };
 
+const appRoutes: Routes = [
+
+{
+  path: 'male', component: MaleComponent
+},
+{
+  path: 'female', component: FemaleComponent
+}
+
+];
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MaleComponent,
+    FemaleComponent,
+    AllComponent
   ],
   imports: [
     BrowserModule, 
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
-    AngularFireDatabaseModule 
+    AngularFireDatabaseModule ,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
